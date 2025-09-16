@@ -19,16 +19,19 @@ RUFF   = $(BIN)/ruff
 MYPY   = $(BIN)/mypy
 PYTEST = $(BIN)/pytest
 
-.PHONY: venv dev lint fmt fix typecheck test clean
+.PHONY: prepare venv dev lint fmt fix typecheck test clean
 
 venv:
 	@if [ ! -d ".venv" ]; then python3 -m venv .venv; fi
 	@echo "Created/using virtualenv at .venv"
 
-dev: venv
+dev:
 	$(PIP) install --upgrade pip
 	$(PIP) install -e .[dev]
 	@echo "Installed package in editable mode with dev tools."
+
+prepare: venv dev
+	@echo "Virtual Environment ready! Run 'source .venv/bin/activate' (Linux/Mac)"
 
 lint:
 	$(RUFF) check src tests
