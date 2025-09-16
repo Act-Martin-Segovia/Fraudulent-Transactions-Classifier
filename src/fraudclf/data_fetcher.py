@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional, Tuple
 
 import pandas as pd
-from fraudclf.utils.common import logger
+from src.utils.common import logger
 
 
 class DataFetcher:
